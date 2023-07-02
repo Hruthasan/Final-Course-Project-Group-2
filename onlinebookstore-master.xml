@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<pattern name="Factory Method" />
+	<pattern name="Prototype" />
+	<pattern name="Singleton" />
+	<pattern name="(Object)Adapter" />
+	<pattern name="Command" />
+	<pattern name="Composite" />
+	<pattern name="Decorator" />
+	<pattern name="Observer" />
+	<pattern name="State">
+		<instance>
+			<role name="State" element="com.bittercode.service.BookService" />
+			<role name="Context" element="servlets.AddBookServlet" />
+			<role name="state" element="servlets.AddBookServlet::bookService:com.bittercode.service.BookService" />
+			<role name="Request()" element="servlets.AddBookServlet::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.bittercode.service.BookService" />
+			<role name="Context" element="servlets.BuyBooksServlet" />
+			<role name="state" element="servlets.BuyBooksServlet::bookService:com.bittercode.service.BookService" />
+			<role name="Request()" element="servlets.BuyBooksServlet::doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.bittercode.service.BookService" />
+			<role name="Context" element="servlets.CartServlet" />
+			<role name="state" element="servlets.CartServlet::bookService:com.bittercode.service.BookService" />
+			<role name="Request()" element="servlets.CartServlet::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.bittercode.service.BookService" />
+			<role name="Context" element="servlets.ProcessPaymentServlet" />
+			<role name="state" element="servlets.ProcessPaymentServlet::bookService:com.bittercode.service.BookService" />
+			<role name="Request()" element="servlets.ProcessPaymentServlet::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.bittercode.service.BookService" />
+			<role name="Context" element="servlets.ReceiptServlet" />
+			<role name="state" element="servlets.ReceiptServlet::bookService:com.bittercode.service.BookService" />
+			<role name="Request()" element="servlets.ReceiptServlet::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.bittercode.service.BookService" />
+			<role name="Context" element="servlets.RemoveBookServlet" />
+			<role name="state" element="servlets.RemoveBookServlet::bookService:com.bittercode.service.BookService" />
+			<role name="Request()" element="servlets.RemoveBookServlet::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.bittercode.service.BookService" />
+			<role name="Context" element="servlets.StoreBookServlet" />
+			<role name="state" element="servlets.StoreBookServlet::bookService:com.bittercode.service.BookService" />
+			<role name="Request()" element="servlets.StoreBookServlet::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.bittercode.service.BookService" />
+			<role name="Context" element="servlets.UpdateBookServlet" />
+			<role name="state" element="servlets.UpdateBookServlet::bookService:com.bittercode.service.BookService" />
+			<role name="Request()" element="servlets.UpdateBookServlet::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.bittercode.service.BookService" />
+			<role name="Context" element="servlets.ViewBookServlet" />
+			<role name="state" element="servlets.ViewBookServlet::bookService:com.bittercode.service.BookService" />
+			<role name="Request()" element="servlets.ViewBookServlet::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="Context" element="servlets.CustomerLoginServlet" />
+			<role name="State" element="com.bittercode.service.UserService" />
+			<role name="state" element="servlets.CustomerLoginServlet::authService:com.bittercode.service.UserService" />
+			<role name="Request()" element="servlets.CustomerLoginServlet::doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="Context" element="servlets.CustomerRegisterServlet" />
+			<role name="State" element="com.bittercode.service.UserService" />
+			<role name="state" element="servlets.CustomerRegisterServlet::userService:com.bittercode.service.UserService" />
+			<role name="Request()" element="servlets.CustomerRegisterServlet::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="Context" element="servlets.LogoutServlet" />
+			<role name="State" element="com.bittercode.service.UserService" />
+			<role name="state" element="servlets.LogoutServlet::authService:com.bittercode.service.UserService" />
+			<role name="Request()" element="servlets.LogoutServlet::doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+		<instance>
+			<role name="Context" element="servlets.SellerLoginServlet" />
+			<role name="State" element="com.bittercode.service.UserService" />
+			<role name="state" element="servlets.SellerLoginServlet::userService:com.bittercode.service.UserService" />
+			<role name="Request()" element="servlets.SellerLoginServlet::doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse):void" />
+		</instance>
+	</pattern>
+	<pattern name="Strategy" />
+	<pattern name="Bridge" />
+	<pattern name="Template Method" />
+	<pattern name="Visitor" />
+	<pattern name="Proxy" />
+	<pattern name="Proxy2" />
+	<pattern name="Chain of Responsibility" />
+</system>
+

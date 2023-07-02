@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<pattern name="Factory Method">
+		<instance>
+			<role name="Creator" element="com.codahale.metrics.Reservoir" />
+			<role name="FactoryMethod()" element="com.codahale.metrics.Reservoir::getSnapshot():com.codahale.metrics.Snapshot" />
+		</instance>
+		<instance>
+			<role name="Creator" element="com.codahale.metrics.ExponentiallyDecayingReservoirTest$ReservoirFactory" />
+			<role name="FactoryMethod()" element="com.codahale.metrics.ExponentiallyDecayingReservoirTest$ReservoirFactory::create(int, double, com.codahale.metrics.Clock):com.codahale.metrics.Reservoir" />
+		</instance>
+	</pattern>
+	<pattern name="Prototype" />
+	<pattern name="Singleton">
+		<instance>
+			<role name="Singleton" element="com.codahale.metrics.MetricFilter" />
+			<role name="uniqueInstance" element="com.codahale.metrics.MetricFilter::ALL:com.codahale.metrics.MetricFilter" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.codahale.metrics.NoopMetricRegistry$EmptySnapshot" />
+			<role name="uniqueInstance" element="com.codahale.metrics.NoopMetricRegistry$EmptySnapshot::INSTANCE:com.codahale.metrics.NoopMetricRegistry$EmptySnapshot" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.codahale.metrics.NoopMetricRegistry$NoopCounter" />
+			<role name="uniqueInstance" element="com.codahale.metrics.NoopMetricRegistry$NoopCounter::INSTANCE:com.codahale.metrics.NoopMetricRegistry$NoopCounter" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.codahale.metrics.NoopMetricRegistry$NoopGauge" />
+			<role name="uniqueInstance" element="com.codahale.metrics.NoopMetricRegistry$NoopGauge::INSTANCE:com.codahale.metrics.NoopMetricRegistry$NoopGauge" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.codahale.metrics.NoopMetricRegistry$NoopHistogram" />
+			<role name="uniqueInstance" element="com.codahale.metrics.NoopMetricRegistry$NoopHistogram::INSTANCE:com.codahale.metrics.NoopMetricRegistry$NoopHistogram" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.codahale.metrics.NoopMetricRegistry$NoopMeter" />
+			<role name="uniqueInstance" element="com.codahale.metrics.NoopMetricRegistry$NoopMeter::INSTANCE:com.codahale.metrics.NoopMetricRegistry$NoopMeter" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.codahale.metrics.NoopMetricRegistry$NoopTimer" />
+			<role name="uniqueInstance" element="com.codahale.metrics.NoopMetricRegistry$NoopTimer::INSTANCE:com.codahale.metrics.NoopMetricRegistry$NoopTimer" />
+		</instance>
+	</pattern>
+	<pattern name="(Object)Adapter">
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.ChunkedAssociativeLongArray" />
+			<role name="Adapter" element="com.codahale.metrics.SlidingTimeWindowArrayReservoir" />
+			<role name="adaptee" element="com.codahale.metrics.SlidingTimeWindowArrayReservoir::measurements:com.codahale.metrics.ChunkedAssociativeLongArray" />
+			<role name="Request()" element="com.codahale.metrics.SlidingTimeWindowArrayReservoir::size():int" />
+			<role name="Request()" element="com.codahale.metrics.SlidingTimeWindowArrayReservoir::update(long):void" />
+			<role name="Request()" element="com.codahale.metrics.SlidingTimeWindowArrayReservoir::getSnapshot():com.codahale.metrics.Snapshot" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir$State" />
+			<role name="Adapter" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir" />
+			<role name="adaptee" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir::state:com.codahale.metrics.LockFreeExponentiallyDecayingReservoir$State" />
+			<role name="Request()" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir::size():int" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Clock" />
+			<role name="Adapter" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir" />
+			<role name="adaptee" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir::update(long):void" />
+			<role name="Request()" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir::getSnapshot():com.codahale.metrics.Snapshot" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.MovingAverages" />
+			<role name="Adapter" element="com.codahale.metrics.Meter" />
+			<role name="adaptee" element="com.codahale.metrics.Meter::movingAverages:com.codahale.metrics.MovingAverages" />
+			<role name="Request()" element="com.codahale.metrics.Meter::getFifteenMinuteRate():double" />
+			<role name="Request()" element="com.codahale.metrics.Meter::getFiveMinuteRate():double" />
+			<role name="Request()" element="com.codahale.metrics.Meter::getOneMinuteRate():double" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.EWMA" />
+			<role name="Adapter" element="com.codahale.metrics.ExponentialMovingAverages" />
+			<role name="adaptee" element="com.codahale.metrics.ExponentialMovingAverages::m1Rate:com.codahale.metrics.EWMA" />
+			<role name="adaptee" element="com.codahale.metrics.ExponentialMovingAverages::m5Rate:com.codahale.metrics.EWMA" />
+			<role name="adaptee" element="com.codahale.metrics.ExponentialMovingAverages::m15Rate:com.codahale.metrics.EWMA" />
+			<role name="Request()" element="com.codahale.metrics.ExponentialMovingAverages::update(long):void" />
+			<role name="Request()" element="com.codahale.metrics.ExponentialMovingAverages::tickIfNecessary():void" />
+			<role name="Request()" element="com.codahale.metrics.ExponentialMovingAverages::getM1Rate():double" />
+			<role name="Request()" element="com.codahale.metrics.ExponentialMovingAverages::getM5Rate():double" />
+			<role name="Request()" element="com.codahale.metrics.ExponentialMovingAverages::getM15Rate():double" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Clock" />
+			<role name="Adapter" element="com.codahale.metrics.Meter" />
+			<role name="adaptee" element="com.codahale.metrics.Meter::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.Meter::getMeanRate():double" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Clock" />
+			<role name="Adapter" element="com.codahale.metrics.ExponentialMovingAverages" />
+			<role name="adaptee" element="com.codahale.metrics.ExponentialMovingAverages::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.ExponentialMovingAverages::tickIfNecessary():void" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Clock" />
+			<role name="Adapter" element="com.codahale.metrics.SlidingTimeWindowMovingAverages" />
+			<role name="adaptee" element="com.codahale.metrics.SlidingTimeWindowMovingAverages::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.SlidingTimeWindowMovingAverages::tickIfNecessary():void" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Clock" />
+			<role name="Adapter" element="com.codahale.metrics.ConsoleReporter" />
+			<role name="adaptee" element="com.codahale.metrics.ConsoleReporter::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.ConsoleReporter::report(java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap):void" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Clock" />
+			<role name="Adapter" element="com.codahale.metrics.CsvReporter" />
+			<role name="adaptee" element="com.codahale.metrics.CsvReporter::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.CsvReporter::report(java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap):void" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Clock" />
+			<role name="Adapter" element="com.codahale.metrics.collectd.CollectdReporter" />
+			<role name="adaptee" element="com.codahale.metrics.collectd.CollectdReporter::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.collectd.CollectdReporter::report(java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap):void" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Clock" />
+			<role name="Adapter" element="com.codahale.metrics.graphite.GraphiteReporter" />
+			<role name="adaptee" element="com.codahale.metrics.graphite.GraphiteReporter::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.graphite.GraphiteReporter::report(java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap):void" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.graphite.GraphiteSender" />
+			<role name="Adapter" element="com.codahale.metrics.graphite.GraphiteReporter" />
+			<role name="adaptee" element="com.codahale.metrics.graphite.GraphiteReporter::graphite:com.codahale.metrics.graphite.GraphiteSender" />
+			<role name="Request()" element="com.codahale.metrics.graphite.GraphiteReporter::report(java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap):void" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Reservoir" />
+			<role name="Adapter" element="com.codahale.metrics.Histogram" />
+			<role name="adaptee" element="com.codahale.metrics.Histogram::reservoir:com.codahale.metrics.Reservoir" />
+			<role name="Request()" element="com.codahale.metrics.Histogram::getSnapshot():com.codahale.metrics.Snapshot" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.codahale.metrics.Slf4jReporter$LoggerProxy" />
+			<role name="Adapter" element="com.codahale.metrics.Slf4jReporter" />
+			<role name="adaptee" element="com.codahale.metrics.Slf4jReporter::loggerProxy:com.codahale.metrics.Slf4jReporter$LoggerProxy" />
+			<role name="Request()" element="com.codahale.metrics.Slf4jReporter::report(java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap):void" />
+		</instance>
+	</pattern>
+	<pattern name="Command" />
+	<pattern name="Composite" />
+	<pattern name="Decorator">
+		<instance>
+			<role name="Component" element="com.codahale.metrics.Gauge" />
+			<role name="Decorator" element="com.codahale.metrics.DerivativeGauge" />
+			<role name="component" element="com.codahale.metrics.DerivativeGauge::base:com.codahale.metrics.Gauge" />
+			<role name="Operation()" element="com.codahale.metrics.DerivativeGauge::getValue():java.lang.Object" />
+		</instance>
+	</pattern>
+	<pattern name="Observer" />
+	<pattern name="State">
+		<instance>
+			<role name="Context" element="com.codahale.metrics.benchmarks.ReservoirBenchmark" />
+			<role name="State" element="com.codahale.metrics.Reservoir" />
+			<role name="state" element="com.codahale.metrics.benchmarks.ReservoirBenchmark::lockFreeExponential:com.codahale.metrics.Reservoir" />
+			<role name="Request()" element="com.codahale.metrics.benchmarks.ReservoirBenchmark::perfLockFreeExponentiallyDecayingReservoir():java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.ExponentiallyDecayingReservoir" />
+			<role name="State" element="com.codahale.metrics.Clock" />
+			<role name="state" element="com.codahale.metrics.ExponentiallyDecayingReservoir::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.ExponentiallyDecayingReservoir::rescaleIfNeeded():void" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir" />
+			<role name="State" element="com.codahale.metrics.Clock" />
+			<role name="state" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir::update(long):void" />
+			<role name="Request()" element="com.codahale.metrics.LockFreeExponentiallyDecayingReservoir::getSnapshot():com.codahale.metrics.Snapshot" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.SlidingTimeWindowArrayReservoir" />
+			<role name="State" element="com.codahale.metrics.Clock" />
+			<role name="state" element="com.codahale.metrics.SlidingTimeWindowArrayReservoir::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.SlidingTimeWindowArrayReservoir::getTick():long" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.SlidingTimeWindowReservoir" />
+			<role name="State" element="com.codahale.metrics.Clock" />
+			<role name="state" element="com.codahale.metrics.SlidingTimeWindowReservoir::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.SlidingTimeWindowReservoir::getTick():long" />
+		</instance>
+		<instance>
+			<role name="State" element="com.codahale.metrics.MovingAverages" />
+			<role name="Context" element="com.codahale.metrics.Meter" />
+			<role name="state" element="com.codahale.metrics.Meter::movingAverages:com.codahale.metrics.MovingAverages" />
+			<role name="Request()" element="com.codahale.metrics.Meter::mark(long):void" />
+			<role name="Request()" element="com.codahale.metrics.Meter::getFifteenMinuteRate():double" />
+			<role name="Request()" element="com.codahale.metrics.Meter::getFiveMinuteRate():double" />
+			<role name="Request()" element="com.codahale.metrics.Meter::getOneMinuteRate():double" />
+		</instance>
+		<instance>
+			<role name="State" element="com.codahale.metrics.Clock" />
+			<role name="Context" element="com.codahale.metrics.Timer" />
+			<role name="state" element="com.codahale.metrics.Timer::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.Timer::time():java.lang.Object" />
+			<role name="Request()" element="com.codahale.metrics.Timer::timeSupplier():java.lang.Object" />
+			<role name="Request()" element="com.codahale.metrics.Timer::time(java.lang.Runnable):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.codahale.metrics.Clock" />
+			<role name="Context" element="com.codahale.metrics.Meter" />
+			<role name="state" element="com.codahale.metrics.Meter::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.Meter::getMeanRate():double" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.ExponentialMovingAverages" />
+			<role name="State" element="com.codahale.metrics.Clock" />
+			<role name="state" element="com.codahale.metrics.ExponentialMovingAverages::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.ExponentialMovingAverages::tickIfNecessary():void" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.SlidingTimeWindowMovingAverages" />
+			<role name="State" element="com.codahale.metrics.Clock" />
+			<role name="state" element="com.codahale.metrics.SlidingTimeWindowMovingAverages::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.SlidingTimeWindowMovingAverages::tickIfNecessary():void" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.graphite.GraphiteReporter" />
+			<role name="State" element="com.codahale.metrics.graphite.GraphiteSender" />
+			<role name="state" element="com.codahale.metrics.graphite.GraphiteReporter::graphite:com.codahale.metrics.graphite.GraphiteSender" />
+			<role name="Request()" element="com.codahale.metrics.graphite.GraphiteReporter::report(java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap):void" />
+			<role name="Request()" element="com.codahale.metrics.graphite.GraphiteReporter::sendIfEnabled(com.codahale.metrics.MetricAttribute, java.lang.String, double, long):void" />
+			<role name="Request()" element="com.codahale.metrics.graphite.GraphiteReporter::sendIfEnabled(com.codahale.metrics.MetricAttribute, java.lang.String, long, long):void" />
+			<role name="Request()" element="com.codahale.metrics.graphite.GraphiteReporter::reportCounter(java.lang.String, com.codahale.metrics.Counter, long):void" />
+			<role name="Request()" element="com.codahale.metrics.graphite.GraphiteReporter::reportGauge(java.lang.String, com.codahale.metrics.Gauge, long):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.codahale.metrics.Reservoir" />
+			<role name="Context" element="com.codahale.metrics.Histogram" />
+			<role name="state" element="com.codahale.metrics.Histogram::reservoir:com.codahale.metrics.Reservoir" />
+			<role name="Request()" element="com.codahale.metrics.Histogram::update(long):void" />
+			<role name="Request()" element="com.codahale.metrics.Histogram::getSnapshot():com.codahale.metrics.Snapshot" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.Timer$Context" />
+			<role name="State" element="com.codahale.metrics.Clock" />
+			<role name="state" element="com.codahale.metrics.Timer$Context::clock:com.codahale.metrics.Clock" />
+			<role name="Request()" element="com.codahale.metrics.Timer$Context::stop():long" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.Slf4jReporter" />
+			<role name="State" element="com.codahale.metrics.Slf4jReporter$LoggerProxy" />
+			<role name="state" element="com.codahale.metrics.Slf4jReporter::loggerProxy:com.codahale.metrics.Slf4jReporter$LoggerProxy" />
+			<role name="Request()" element="com.codahale.metrics.Slf4jReporter::report(java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap, java.util.SortedMap):void" />
+			<role name="Request()" element="com.codahale.metrics.Slf4jReporter::logTimer(java.lang.StringBuilder, java.lang.String, com.codahale.metrics.Timer):void" />
+			<role name="Request()" element="com.codahale.metrics.Slf4jReporter::logMeter(java.lang.StringBuilder, java.lang.String, com.codahale.metrics.Meter):void" />
+			<role name="Request()" element="com.codahale.metrics.Slf4jReporter::logHistogram(java.lang.StringBuilder, java.lang.String, com.codahale.metrics.Histogram):void" />
+			<role name="Request()" element="com.codahale.metrics.Slf4jReporter::logCounter(java.lang.StringBuilder, java.lang.String, com.codahale.metrics.Counter):void" />
+			<role name="Request()" element="com.codahale.metrics.Slf4jReporter::logGauge(java.lang.StringBuilder, java.lang.String, com.codahale.metrics.Gauge):void" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.CsvReporter" />
+			<role name="State" element="com.codahale.metrics.CsvFileProvider" />
+			<role name="state" element="com.codahale.metrics.CsvReporter::csvFileProvider:com.codahale.metrics.CsvFileProvider" />
+			<role name="Request()" element="com.codahale.metrics.CsvReporter::report(long, java.lang.String, java.lang.String, java.lang.String, java.lang.Object[]):void" />
+		</instance>
+	</pattern>
+	<pattern name="Strategy">
+		<instance>
+			<role name="Context" element="com.codahale.metrics.httpasyncclient.InstrumentedNHttpClientBuilder" />
+			<role name="Strategy" element="com.codahale.metrics.httpclient.HttpClientMetricNameStrategy" />
+			<role name="strategy" element="com.codahale.metrics.httpasyncclient.InstrumentedNHttpClientBuilder::metricNameStrategy:com.codahale.metrics.httpclient.HttpClientMetricNameStrategy" />
+			<role name="ContextInterface()" element="com.codahale.metrics.httpasyncclient.InstrumentedNHttpClientBuilder::timer(org.apache.http.HttpRequest):com.codahale.metrics.Timer" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.httpclient.InstrumentedHttpRequestExecutor" />
+			<role name="Strategy" element="com.codahale.metrics.httpclient.HttpClientMetricNameStrategy" />
+			<role name="strategy" element="com.codahale.metrics.httpclient.InstrumentedHttpRequestExecutor::metricNameStrategy:com.codahale.metrics.httpclient.HttpClientMetricNameStrategy" />
+			<role name="ContextInterface()" element="com.codahale.metrics.httpclient.InstrumentedHttpRequestExecutor::timer(org.apache.http.HttpRequest):com.codahale.metrics.Timer" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.httpclient5.InstrumentedAsyncExecChainHandler$InstrumentedAsyncExecCallback" />
+			<role name="Strategy" element="com.codahale.metrics.httpclient5.HttpClientMetricNameStrategy" />
+			<role name="strategy" element="com.codahale.metrics.httpclient5.InstrumentedAsyncExecChainHandler$InstrumentedAsyncExecCallback::metricNameStrategy:com.codahale.metrics.httpclient5.HttpClientMetricNameStrategy" />
+			<role name="ContextInterface()" element="com.codahale.metrics.httpclient5.InstrumentedAsyncExecChainHandler$InstrumentedAsyncExecCallback::timer(org.apache.hc.core5.http.HttpRequest):com.codahale.metrics.Timer" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.httpclient5.InstrumentedHttpRequestExecutor" />
+			<role name="Strategy" element="com.codahale.metrics.httpclient5.HttpClientMetricNameStrategy" />
+			<role name="strategy" element="com.codahale.metrics.httpclient5.InstrumentedHttpRequestExecutor::metricNameStrategy:com.codahale.metrics.httpclient5.HttpClientMetricNameStrategy" />
+			<role name="ContextInterface()" element="com.codahale.metrics.httpclient5.InstrumentedHttpRequestExecutor::timer(org.apache.hc.core5.http.HttpRequest):com.codahale.metrics.Timer" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.jdbi.InstrumentedTimingCollector" />
+			<role name="Strategy" element="com.codahale.metrics.jdbi.strategies.StatementNameStrategy" />
+			<role name="strategy" element="com.codahale.metrics.jdbi.InstrumentedTimingCollector::statementNameStrategy:com.codahale.metrics.jdbi.strategies.StatementNameStrategy" />
+			<role name="ContextInterface()" element="com.codahale.metrics.jdbi.InstrumentedTimingCollector::getTimer(org.skife.jdbi.v2.StatementContext):com.codahale.metrics.Timer" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.jdbi3.InstrumentedSqlLogger" />
+			<role name="Strategy" element="com.codahale.metrics.jdbi3.strategies.StatementNameStrategy" />
+			<role name="strategy" element="com.codahale.metrics.jdbi3.InstrumentedSqlLogger::statementNameStrategy:com.codahale.metrics.jdbi3.strategies.StatementNameStrategy" />
+			<role name="ContextInterface()" element="com.codahale.metrics.jdbi3.InstrumentedSqlLogger::log(org.jdbi.v3.core.statement.StatementContext):void" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.codahale.metrics.jdbi3.InstrumentedTimingCollector" />
+			<role name="Strategy" element="com.codahale.metrics.jdbi3.strategies.StatementNameStrategy" />
+			<role name="strategy" element="com.codahale.metrics.jdbi3.InstrumentedTimingCollector::statementNameStrategy:com.codahale.metrics.jdbi3.strategies.StatementNameStrategy" />
+			<role name="ContextInterface()" element="com.codahale.metrics.jdbi3.InstrumentedTimingCollector::collect(long, org.jdbi.v3.core.statement.StatementContext):void" />
+		</instance>
+	</pattern>
+	<pattern name="Bridge">
+		<instance>
+			<role name="Abstraction" element="com.codahale.metrics.CachedGauge" />
+			<role name="Implementor" element="com.codahale.metrics.Clock" />
+			<role name="implementor" element="com.codahale.metrics.CachedGauge::clock:com.codahale.metrics.Clock" />
+			<role name="Operation()" element="com.codahale.metrics.CachedGauge::shouldLoad():boolean" />
+		</instance>
+	</pattern>
+	<pattern name="Template Method">
+		<instance>
+			<role name="AbstractClass" element="com.codahale.metrics.CachedGauge" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.CachedGauge::getValue():java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.codahale.metrics.DerivativeGauge" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.DerivativeGauge::getValue():java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.codahale.metrics.RatioGauge" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.RatioGauge::getValue():java.lang.Double" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.codahale.metrics.ScheduledReporter" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.ScheduledReporter::report():void" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.codahale.metrics.Snapshot" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.Snapshot::getMedian():double" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.Snapshot::get75thPercentile():double" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.Snapshot::get95thPercentile():double" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.Snapshot::get98thPercentile():double" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.Snapshot::get99thPercentile():double" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.Snapshot::get999thPercentile():double" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.codahale.metrics.ExponentiallyDecayingReservoirTest$ReservoirFactory" />
+			<role name="TemplateMethod()" element="com.codahale.metrics.ExponentiallyDecayingReservoirTest$ReservoirFactory::create(int, double):com.codahale.metrics.Reservoir" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="io.dropwizard.metrics.servlet.InstrumentedFilterContextListener" />
+			<role name="TemplateMethod()" element="io.dropwizard.metrics.servlet.InstrumentedFilterContextListener::contextInitialized(jakarta.servlet.ServletContextEvent):void" />
+		</instance>
+	</pattern>
+	<pattern name="Visitor" />
+	<pattern name="Proxy">
+		<instance>
+			<role name="Proxy" element="com.codahale.metrics.Timer" />
+			<role name="RealSubject" element="com.codahale.metrics.Histogram" />
+			<role name="Request()" element="com.codahale.metrics.Timer::getSnapshot():com.codahale.metrics.Snapshot" />
+		</instance>
+		<instance>
+			<role name="Proxy" element="com.codahale.metrics.Timer" />
+			<role name="RealSubject" element="com.codahale.metrics.Meter" />
+			<role name="Request()" element="com.codahale.metrics.Timer::getFifteenMinuteRate():double" />
+			<role name="Request()" element="com.codahale.metrics.Timer::getFiveMinuteRate():double" />
+			<role name="Request()" element="com.codahale.metrics.Timer::getMeanRate():double" />
+			<role name="Request()" element="com.codahale.metrics.Timer::getOneMinuteRate():double" />
+		</instance>
+	</pattern>
+	<pattern name="Proxy2" />
+	<pattern name="Chain of Responsibility" />
+</system>
+

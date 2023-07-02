@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<pattern name="Factory Method" />
+	<pattern name="Prototype" />
+	<pattern name="Singleton">
+		<instance>
+			<role name="Singleton" element="com.jsoniter.any.FalseAny" />
+			<role name="uniqueInstance" element="com.jsoniter.any.FalseAny::INSTANCE:com.jsoniter.any.FalseAny" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.jsoniter.any.NullAny" />
+			<role name="uniqueInstance" element="com.jsoniter.any.NullAny::INSTANCE:com.jsoniter.any.NullAny" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.jsoniter.any.TrueAny" />
+			<role name="uniqueInstance" element="com.jsoniter.any.TrueAny::INSTANCE:com.jsoniter.any.TrueAny" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.jsoniter.spi.Config" />
+			<role name="uniqueInstance" element="com.jsoniter.spi.Config::INSTANCE:com.jsoniter.spi.Config" />
+		</instance>
+		<instance>
+			<role name="Singleton" element="com.jsoniter.output.TestObject$MyEnum" />
+			<role name="uniqueInstance" element="com.jsoniter.output.TestObject$MyEnum::HELLO:com.jsoniter.output.TestObject$MyEnum" />
+		</instance>
+	</pattern>
+	<pattern name="(Object)Adapter">
+		<instance>
+			<role name="Adaptee" element="com.jsoniter.any.Any" />
+			<role name="Adapter" element="com.jsoniter.any.MapWrapperAny$WrapperIterator" />
+			<role name="adaptee" element="com.jsoniter.any.MapWrapperAny$WrapperIterator::value:com.jsoniter.any.Any" />
+			<role name="Request()" element="com.jsoniter.any.MapWrapperAny$WrapperIterator::next():boolean" />
+		</instance>
+	</pattern>
+	<pattern name="Command" />
+	<pattern name="Composite" />
+	<pattern name="Decorator">
+		<instance>
+			<role name="Component" element="com.jsoniter.spi.Decoder" />
+			<role name="Decorator" element="com.jsoniter.MapKeyDecoders$NumberKeyDecoder" />
+			<role name="component" element="com.jsoniter.MapKeyDecoders$NumberKeyDecoder::decoder:com.jsoniter.spi.Decoder" />
+			<role name="Operation()" element="com.jsoniter.MapKeyDecoders$NumberKeyDecoder::decode(com.jsoniter.JsonIterator):java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="Component" element="com.jsoniter.spi.Decoder" />
+			<role name="Decorator" element="com.jsoniter.ReflectionArrayDecoder" />
+			<role name="component" element="com.jsoniter.ReflectionArrayDecoder::compTypeDecoder:com.jsoniter.spi.Decoder" />
+			<role name="Operation()" element="com.jsoniter.ReflectionArrayDecoder::decode(com.jsoniter.JsonIterator):java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="Component" element="com.jsoniter.spi.Encoder" />
+			<role name="Decorator" element="com.jsoniter.output.MapKeyEncoders$NumberKeyEncoder" />
+			<role name="component" element="com.jsoniter.output.MapKeyEncoders$NumberKeyEncoder::encoder:com.jsoniter.spi.Encoder" />
+			<role name="Operation()" element="com.jsoniter.output.MapKeyEncoders$NumberKeyEncoder::encode(java.lang.Object, com.jsoniter.output.JsonStream):void" />
+		</instance>
+	</pattern>
+	<pattern name="Observer" />
+	<pattern name="State" />
+	<pattern name="Strategy" />
+	<pattern name="Bridge" />
+	<pattern name="Template Method">
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.any.Any" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::bindTo():java.lang.Object" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::bindTo(, T):java.lang.Object" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::object(java.lang.Object[]):java.lang.Object" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::asMap():java.util.Map" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::asList():java.util.List" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::as():java.lang.Object" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::toBoolean(java.lang.Object[]):boolean" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::toInt(java.lang.Object[]):int" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::toLong(java.lang.Object[]):long" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::toFloat(java.lang.Object[]):float" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::toDouble(java.lang.Object[]):double" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::toBigInteger(java.lang.Object[]):java.math.BigInteger" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::toBigDecimal(java.lang.Object[]):java.math.BigDecimal" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::toString(java.lang.Object[]):java.lang.String" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::get(int):com.jsoniter.any.Any" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::get(java.lang.Object):com.jsoniter.any.Any" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::get(java.lang.Object[], int):com.jsoniter.any.Any" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::reportUnexpectedType(com.jsoniter.ValueType):com.jsoniter.spi.JsonException" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::equals(java.lang.Object):boolean" />
+			<role name="TemplateMethod()" element="com.jsoniter.any.Any::hashCode():int" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Decoder$BooleanDecoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Decoder$BooleanDecoder::decode(com.jsoniter.JsonIterator):java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Decoder$DoubleDecoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Decoder$DoubleDecoder::decode(com.jsoniter.JsonIterator):java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Decoder$FloatDecoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Decoder$FloatDecoder::decode(com.jsoniter.JsonIterator):java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Decoder$IntDecoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Decoder$IntDecoder::decode(com.jsoniter.JsonIterator):java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Decoder$LongDecoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Decoder$LongDecoder::decode(com.jsoniter.JsonIterator):java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Decoder$ShortDecoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Decoder$ShortDecoder::decode(com.jsoniter.JsonIterator):java.lang.Object" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Encoder$BooleanEncoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Encoder$BooleanEncoder::encode(java.lang.Object, com.jsoniter.output.JsonStream):void" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Encoder$DoubleEncoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Encoder$DoubleEncoder::encode(java.lang.Object, com.jsoniter.output.JsonStream):void" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Encoder$FloatEncoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Encoder$FloatEncoder::encode(java.lang.Object, com.jsoniter.output.JsonStream):void" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Encoder$IntEncoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Encoder$IntEncoder::encode(java.lang.Object, com.jsoniter.output.JsonStream):void" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Encoder$LongEncoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Encoder$LongEncoder::encode(java.lang.Object, com.jsoniter.output.JsonStream):void" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="com.jsoniter.spi.Encoder$ShortEncoder" />
+			<role name="TemplateMethod()" element="com.jsoniter.spi.Encoder$ShortEncoder::encode(java.lang.Object, com.jsoniter.output.JsonStream):void" />
+		</instance>
+	</pattern>
+	<pattern name="Visitor" />
+	<pattern name="Proxy" />
+	<pattern name="Proxy2" />
+	<pattern name="Chain of Responsibility" />
+</system>
+

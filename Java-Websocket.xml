@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<pattern name="Factory Method">
+		<instance>
+			<role name="Creator" element="org.java_websocket.drafts.Draft" />
+			<role name="FactoryMethod()" element="org.java_websocket.drafts.Draft::copyInstance():org.java_websocket.drafts.Draft" />
+		</instance>
+		<instance>
+			<role name="Creator" element="org.java_websocket.extensions.IExtension" />
+			<role name="FactoryMethod()" element="org.java_websocket.extensions.IExtension::copyInstance():org.java_websocket.extensions.IExtension" />
+		</instance>
+		<instance>
+			<role name="Creator" element="org.java_websocket.protocols.IProtocol" />
+			<role name="FactoryMethod()" element="org.java_websocket.protocols.IProtocol::copyInstance():org.java_websocket.protocols.IProtocol" />
+		</instance>
+		<instance>
+			<role name="Creator" element="org.java_websocket.WebSocketListener" />
+			<role name="FactoryMethod()" element="org.java_websocket.WebSocketListener::onWebsocketHandshakeReceivedAsServer(org.java_websocket.WebSocket, org.java_websocket.drafts.Draft, org.java_websocket.handshake.ClientHandshake):org.java_websocket.handshake.ServerHandshakeBuilder" />
+			<role name="FactoryMethod()" element="org.java_websocket.WebSocketListener::onPreparePing(org.java_websocket.WebSocket):org.java_websocket.framing.PingFrame" />
+		</instance>
+		<instance>
+			<role name="Creator" element="org.java_websocket.WebSocketServerFactory" />
+			<role name="FactoryMethod()" element="org.java_websocket.WebSocketServerFactory::createWebSocket(org.java_websocket.WebSocketAdapter, org.java_websocket.drafts.Draft):org.java_websocket.WebSocketImpl" />
+			<role name="FactoryMethod()" element="org.java_websocket.WebSocketServerFactory::createWebSocket(org.java_websocket.WebSocketAdapter, java.util.List):org.java_websocket.WebSocketImpl" />
+		</instance>
+	</pattern>
+	<pattern name="Prototype" />
+	<pattern name="Singleton" />
+	<pattern name="(Object)Adapter">
+		<instance>
+			<role name="Adaptee" element="org.java_websocket.WebSocketListener" />
+			<role name="Adapter" element="org.java_websocket.WebSocketImpl" />
+			<role name="adaptee" element="org.java_websocket.WebSocketImpl::wsl:org.java_websocket.WebSocketListener" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::sendPing():void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::getRemoteSocketAddress():java.net.InetSocketAddress" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::getLocalSocketAddress():java.net.InetSocketAddress" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="org.java_websocket.framing.Framedata" />
+			<role name="Adapter" element="org.java_websocket.drafts.Draft_6455" />
+			<role name="adaptee" element="org.java_websocket.drafts.Draft_6455::currentContinuousFrame:org.java_websocket.framing.Framedata" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::processFrame(org.java_websocket.WebSocketImpl, org.java_websocket.framing.Framedata):void" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="org.java_websocket.drafts.Draft" />
+			<role name="Adapter" element="org.java_websocket.WebSocketImpl" />
+			<role name="adaptee" element="org.java_websocket.WebSocketImpl::draft:org.java_websocket.drafts.Draft" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::send(java.lang.String):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::send(java.nio.ByteBuffer):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::sendFragmentedFrame(org.java_websocket.enums.Opcode, java.nio.ByteBuffer, boolean):void" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="org.java_websocket.extensions.IExtension" />
+			<role name="Adapter" element="org.java_websocket.drafts.Draft_6455" />
+			<role name="adaptee" element="org.java_websocket.drafts.Draft_6455::negotiatedExtension:org.java_websocket.extensions.IExtension" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::acceptHandshakeAsServer(org.java_websocket.handshake.ClientHandshake):org.java_websocket.enums.HandshakeState" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::acceptHandshakeAsClient(org.java_websocket.handshake.ClientHandshake, org.java_websocket.handshake.ServerHandshake):org.java_websocket.enums.HandshakeState" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::reset():void" />
+		</instance>
+	</pattern>
+	<pattern name="Command" />
+	<pattern name="Composite" />
+	<pattern name="Decorator" />
+	<pattern name="Observer" />
+	<pattern name="State">
+		<instance>
+			<role name="Context" element="org.java_websocket.WebSocketImpl" />
+			<role name="State" element="org.java_websocket.WebSocketListener" />
+			<role name="state" element="org.java_websocket.WebSocketImpl::wsl:org.java_websocket.WebSocketListener" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::decodeHandshake(java.nio.ByteBuffer):boolean" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::decodeFrames(java.nio.ByteBuffer):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::close(int, java.lang.String, boolean):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::closeConnection(int, java.lang.String, boolean):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::flushAndClose(int, java.lang.String, boolean):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::sendPing():void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::startHandshake(org.java_websocket.handshake.ClientHandshakeBuilder):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::write(java.nio.ByteBuffer):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::open(org.java_websocket.handshake.Handshakedata):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::getRemoteSocketAddress():java.net.InetSocketAddress" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::getLocalSocketAddress():java.net.InetSocketAddress" />
+		</instance>
+		<instance>
+			<role name="Context" element="org.java_websocket.drafts.Draft_6455" />
+			<role name="State" element="org.java_websocket.framing.Framedata" />
+			<role name="state" element="org.java_websocket.drafts.Draft_6455::currentContinuousFrame:org.java_websocket.framing.Framedata" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::processFrame(org.java_websocket.WebSocketImpl, org.java_websocket.framing.Framedata):void" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::processFrameContinuousAndNonFin(org.java_websocket.WebSocketImpl, org.java_websocket.framing.Framedata, org.java_websocket.enums.Opcode):void" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::processFrameIsFin(org.java_websocket.WebSocketImpl, org.java_websocket.framing.Framedata):void" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::processFrameIsNotFin(org.java_websocket.framing.Framedata):void" />
+		</instance>
+		<instance>
+			<role name="State" element="org.java_websocket.drafts.Draft" />
+			<role name="Context" element="org.java_websocket.WebSocketImpl" />
+			<role name="state" element="org.java_websocket.WebSocketImpl::draft:org.java_websocket.drafts.Draft" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::decodeHandshake(java.nio.ByteBuffer):boolean" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::decodeFrames(java.nio.ByteBuffer):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::close(int, java.lang.String, boolean):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::closeConnection(int, java.lang.String, boolean):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::flushAndClose(int, java.lang.String, boolean):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::eot():void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::send(java.lang.String):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::send(java.nio.ByteBuffer):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::send(java.util.Collection):void" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::startHandshake(org.java_websocket.handshake.ClientHandshakeBuilder):void" />
+		</instance>
+		<instance>
+			<role name="Context" element="org.java_websocket.drafts.Draft_6455" />
+			<role name="State" element="org.java_websocket.extensions.IExtension" />
+			<role name="state" element="org.java_websocket.drafts.Draft_6455::negotiatedExtension:org.java_websocket.extensions.IExtension" />
+			<role name="state" element="org.java_websocket.drafts.Draft_6455::currentDecodingExtension:org.java_websocket.extensions.IExtension" />
+			<role name="state" element="org.java_websocket.drafts.Draft_6455::defaultExtension:org.java_websocket.extensions.IExtension" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::acceptHandshakeAsServer(org.java_websocket.handshake.ClientHandshake):org.java_websocket.enums.HandshakeState" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::acceptHandshakeAsClient(org.java_websocket.handshake.ClientHandshake, org.java_websocket.handshake.ServerHandshake):org.java_websocket.enums.HandshakeState" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::translateSingleFrame(java.nio.ByteBuffer):org.java_websocket.framing.Framedata" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::reset():void" />
+		</instance>
+		<instance>
+			<role name="Context" element="org.java_websocket.drafts.Draft_6455" />
+			<role name="State" element="org.java_websocket.protocols.IProtocol" />
+			<role name="state" element="org.java_websocket.drafts.Draft_6455::protocol:org.java_websocket.protocols.IProtocol" />
+			<role name="Request()" element="org.java_websocket.drafts.Draft_6455::containsRequestedProtocol(java.lang.String):org.java_websocket.enums.HandshakeState" />
+		</instance>
+		<instance>
+			<role name="State" element="org.java_websocket.handshake.ClientHandshake" />
+			<role name="Context" element="org.java_websocket.WebSocketImpl" />
+			<role name="state" element="org.java_websocket.WebSocketImpl::handshakerequest:org.java_websocket.handshake.ClientHandshake" />
+			<role name="Request()" element="org.java_websocket.WebSocketImpl::decodeHandshake(java.nio.ByteBuffer):boolean" />
+		</instance>
+	</pattern>
+	<pattern name="Strategy" />
+	<pattern name="Bridge">
+		<instance>
+			<role name="Abstraction" element="org.java_websocket.client.WebSocketClient" />
+			<role name="Implementor" element="org.java_websocket.drafts.Draft" />
+			<role name="implementor" element="org.java_websocket.client.WebSocketClient::draft:org.java_websocket.drafts.Draft" />
+			<role name="Operation()" element="org.java_websocket.client.WebSocketClient::reset():void" />
+		</instance>
+		<instance>
+			<role name="Abstraction" element="org.java_websocket.server.WebSocketServer" />
+			<role name="Implementor" element="org.java_websocket.WebSocketServerFactory" />
+			<role name="implementor" element="org.java_websocket.server.WebSocketServer::wsf:org.java_websocket.WebSocketServerFactory" />
+			<role name="Operation()" element="org.java_websocket.server.WebSocketServer::stop(int, java.lang.String):void" />
+			<role name="Operation()" element="org.java_websocket.server.WebSocketServer::doAccept(java.nio.channels.SelectionKey, java.util.Iterator):void" />
+			<role name="Operation()" element="org.java_websocket.server.WebSocketServer::setWebSocketFactory(org.java_websocket.WebSocketServerFactory):void" />
+		</instance>
+		<instance>
+			<role name="Abstraction" element="org.java_websocket.client.WebSocketClient" />
+			<role name="Implementor" element="org.java_websocket.client.DnsResolver" />
+			<role name="implementor" element="org.java_websocket.client.WebSocketClient::dnsResolver:org.java_websocket.client.DnsResolver" />
+			<role name="Operation()" element="org.java_websocket.client.WebSocketClient::run():void" />
+		</instance>
+	</pattern>
+	<pattern name="Template Method">
+		<instance>
+			<role name="AbstractClass" element="org.java_websocket.AbstractWebSocket" />
+			<role name="TemplateMethod()" element="org.java_websocket.AbstractWebSocket::setConnectionLostTimeout(int):void" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="org.java_websocket.client.WebSocketClient" />
+			<role name="TemplateMethod()" element="org.java_websocket.client.WebSocketClient::reset():void" />
+			<role name="TemplateMethod()" element="org.java_websocket.client.WebSocketClient::run():void" />
+			<role name="TemplateMethod()" element="org.java_websocket.client.WebSocketClient::onWebsocketMessage(org.java_websocket.WebSocket, java.lang.String):void" />
+			<role name="TemplateMethod()" element="org.java_websocket.client.WebSocketClient::onWebsocketOpen(org.java_websocket.WebSocket, org.java_websocket.handshake.Handshakedata):void" />
+			<role name="TemplateMethod()" element="org.java_websocket.client.WebSocketClient::onWebsocketClose(org.java_websocket.WebSocket, int, java.lang.String, boolean):void" />
+			<role name="TemplateMethod()" element="org.java_websocket.client.WebSocketClient::onWebsocketError(org.java_websocket.WebSocket, java.lang.Exception):void" />
+			<role name="TemplateMethod()" element="org.java_websocket.client.WebSocketClient::handleIOException(java.io.IOException):void" />
+		</instance>
+		<instance>
+			<role name="AbstractClass" element="org.java_websocket.server.WebSocketServer" />
+			<role name="TemplateMethod()" element="org.java_websocket.server.WebSocketServer::doSetupSelectorAndServerThread():boolean" />
+			<role name="TemplateMethod()" element="org.java_websocket.server.WebSocketServer::doServerShutdown():void" />
+			<role name="TemplateMethod()" element="org.java_websocket.server.WebSocketServer::handleFatal(org.java_websocket.WebSocket, java.lang.Exception):void" />
+			<role name="TemplateMethod()" element="org.java_websocket.server.WebSocketServer::onWebsocketMessage(org.java_websocket.WebSocket, java.lang.String):void" />
+			<role name="TemplateMethod()" element="org.java_websocket.server.WebSocketServer::onWebsocketOpen(org.java_websocket.WebSocket, org.java_websocket.handshake.Handshakedata):void" />
+			<role name="TemplateMethod()" element="org.java_websocket.server.WebSocketServer::onWebsocketClose(org.java_websocket.WebSocket, int, java.lang.String, boolean):void" />
+			<role name="TemplateMethod()" element="org.java_websocket.server.WebSocketServer::onWebsocketError(org.java_websocket.WebSocket, java.lang.Exception):void" />
+		</instance>
+	</pattern>
+	<pattern name="Visitor" />
+	<pattern name="Proxy">
+		<instance>
+			<role name="Proxy" element="org.java_websocket.client.WebSocketClient" />
+			<role name="RealSubject" element="org.java_websocket.WebSocketImpl" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::send(java.lang.String):void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::send(byte[]):void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::sendPing():void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::getReadyState():org.java_websocket.enums.ReadyState" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::sendFragmentedFrame(org.java_websocket.enums.Opcode, java.nio.ByteBuffer, boolean):void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::isOpen():boolean" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::isFlushAndClose():boolean" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::isClosed():boolean" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::isClosing():boolean" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::hasBufferedData():boolean" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::close(int):void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::close(int, java.lang.String):void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::closeConnection(int, java.lang.String):void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::send(java.nio.ByteBuffer):void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::sendFrame(org.java_websocket.framing.Framedata):void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::sendFrame(java.util.Collection):void" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::getLocalSocketAddress():java.net.InetSocketAddress" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::getRemoteSocketAddress():java.net.InetSocketAddress" />
+			<role name="Request()" element="org.java_websocket.client.WebSocketClient::getProtocol():org.java_websocket.protocols.IProtocol" />
+		</instance>
+	</pattern>
+	<pattern name="Proxy2" />
+	<pattern name="Chain of Responsibility" />
+</system>
+

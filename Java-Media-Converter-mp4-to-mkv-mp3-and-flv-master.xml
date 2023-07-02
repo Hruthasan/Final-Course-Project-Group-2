@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<pattern name="Factory Method" />
+	<pattern name="Prototype" />
+	<pattern name="Singleton">
+		<instance>
+			<role name="Singleton" element="MediaConvertor.ThreadAllocator" />
+			<role name="uniqueInstance" element="MediaConvertor.ThreadAllocator::instance:MediaConvertor.ThreadAllocator" />
+		</instance>
+	</pattern>
+	<pattern name="(Object)Adapter">
+		<instance>
+			<role name="Adaptee" element="MediaConvertor.EcoderFactory" />
+			<role name="Adapter" element="MediaConvertor.Watcher" />
+			<role name="adaptee" element="MediaConvertor.Watcher::factory:MediaConvertor.EcoderFactory" />
+			<role name="Request()" element="MediaConvertor.Watcher::check_mp4TOflv():void" />
+			<role name="Request()" element="MediaConvertor.Watcher::check_mp4TOmkv():void" />
+			<role name="Request()" element="MediaConvertor.Watcher::check_mp4TOmp3():void" />
+		</instance>
+	</pattern>
+	<pattern name="Command" />
+	<pattern name="Composite" />
+	<pattern name="Decorator" />
+	<pattern name="Observer" />
+	<pattern name="State" />
+	<pattern name="Strategy" />
+	<pattern name="Bridge" />
+	<pattern name="Template Method" />
+	<pattern name="Visitor" />
+	<pattern name="Proxy" />
+	<pattern name="Proxy2" />
+	<pattern name="Chain of Responsibility" />
+</system>
+

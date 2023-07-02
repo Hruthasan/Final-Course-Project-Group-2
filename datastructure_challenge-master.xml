@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<pattern name="Factory Method" />
+	<pattern name="Prototype" />
+	<pattern name="Singleton">
+		<instance>
+			<role name="Singleton" element="com.design_pattern.creational.singleton.ThreadSingletonDemo" />
+			<role name="uniqueInstance" element="com.design_pattern.creational.singleton.ThreadSingletonDemo::threadSingletonDemo:com.design_pattern.creational.singleton.ThreadSingletonDemo" />
+		</instance>
+	</pattern>
+	<pattern name="(Object)Adapter">
+		<instance>
+			<role name="Adaptee" element="com.design_pattern.structural.adapter.Socket" />
+			<role name="Adapter" element="com.design_pattern.structural.adapter.AdapterDesign_ObjectImpDemo" />
+			<role name="adaptee" element="com.design_pattern.structural.adapter.AdapterDesign_ObjectImpDemo::socket:com.design_pattern.structural.adapter.Socket" />
+			<role name="Request()" element="com.design_pattern.structural.adapter.AdapterDesign_ObjectImpDemo::get120Volt():com.design_pattern.structural.adapter.Volt" />
+			<role name="Request()" element="com.design_pattern.structural.adapter.AdapterDesign_ObjectImpDemo::get12Volt():com.design_pattern.structural.adapter.Volt" />
+			<role name="Request()" element="com.design_pattern.structural.adapter.AdapterDesign_ObjectImpDemo::get3Volt():com.design_pattern.structural.adapter.Volt" />
+		</instance>
+		<instance>
+			<role name="Adaptee" element="com.design_pattern.behavioral.observer.Subject" />
+			<role name="Adapter" element="com.design_pattern.behavioral.observer.MyTopicSubscriber" />
+			<role name="adaptee" element="com.design_pattern.behavioral.observer.MyTopicSubscriber::topic:com.design_pattern.behavioral.observer.Subject" />
+			<role name="Request()" element="com.design_pattern.behavioral.observer.MyTopicSubscriber::update():void" />
+		</instance>
+	</pattern>
+	<pattern name="Command">
+		<instance>
+			<role name="Receiver" element="com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="ConcreteCommand" element="com.design_pattern.behavioral.command.CloseCommand" />
+			<role name="receiver" element="com.design_pattern.behavioral.command.CloseCommand::fileSystemReciever:com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="Execute()" element="com.design_pattern.behavioral.command.CloseCommand::execute():void" />
+		</instance>
+		<instance>
+			<role name="Receiver" element="com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="ConcreteCommand" element="com.design_pattern.behavioral.command.OpenCommand" />
+			<role name="receiver" element="com.design_pattern.behavioral.command.OpenCommand::fileSystemReciever:com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="Execute()" element="com.design_pattern.behavioral.command.OpenCommand::execute():void" />
+		</instance>
+		<instance>
+			<role name="Receiver" element="com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="ConcreteCommand" element="com.design_pattern.behavioral.command.WriteCommand" />
+			<role name="receiver" element="com.design_pattern.behavioral.command.WriteCommand::fileSystemReciever:com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="Execute()" element="com.design_pattern.behavioral.command.WriteCommand::execute():void" />
+		</instance>
+	</pattern>
+	<pattern name="Composite" />
+	<pattern name="Decorator">
+		<instance>
+			<role name="Component" element="com.design_pattern.structural.decorator.Car" />
+			<role name="Decorator" element="com.design_pattern.structural.decorator.CarDecorator" />
+			<role name="component" element="com.design_pattern.structural.decorator.CarDecorator::c:com.design_pattern.structural.decorator.Car" />
+			<role name="Operation()" element="com.design_pattern.structural.decorator.CarDecorator::assemble():void" />
+		</instance>
+		<instance>
+			<role name="Component" element="com.design_pattern.behavioral.chainofresponsibility.DispenseChain" />
+			<role name="Decorator" element="com.design_pattern.behavioral.chainofresponsibility.Dollar10Dispenser" />
+			<role name="component" element="com.design_pattern.behavioral.chainofresponsibility.Dollar10Dispenser::chain:com.design_pattern.behavioral.chainofresponsibility.DispenseChain" />
+			<role name="Operation()" element="com.design_pattern.behavioral.chainofresponsibility.Dollar10Dispenser::dispense(com.design_pattern.behavioral.chainofresponsibility.Currency):void" />
+		</instance>
+		<instance>
+			<role name="Component" element="com.design_pattern.behavioral.chainofresponsibility.DispenseChain" />
+			<role name="Decorator" element="com.design_pattern.behavioral.chainofresponsibility.Dollar20Dispenser" />
+			<role name="component" element="com.design_pattern.behavioral.chainofresponsibility.Dollar20Dispenser::chain:com.design_pattern.behavioral.chainofresponsibility.DispenseChain" />
+			<role name="Operation()" element="com.design_pattern.behavioral.chainofresponsibility.Dollar20Dispenser::dispense(com.design_pattern.behavioral.chainofresponsibility.Currency):void" />
+		</instance>
+		<instance>
+			<role name="Component" element="com.design_pattern.behavioral.chainofresponsibility.DispenseChain" />
+			<role name="Decorator" element="com.design_pattern.behavioral.chainofresponsibility.Dollar50Dispenser" />
+			<role name="component" element="com.design_pattern.behavioral.chainofresponsibility.Dollar50Dispenser::dispenseChange:com.design_pattern.behavioral.chainofresponsibility.DispenseChain" />
+			<role name="Operation()" element="com.design_pattern.behavioral.chainofresponsibility.Dollar50Dispenser::dispense(com.design_pattern.behavioral.chainofresponsibility.Currency):void" />
+		</instance>
+		<instance>
+			<role name="Component" element="com.design_pattern.behavioral.state.State" />
+			<role name="Decorator" element="com.design_pattern.behavioral.state.TVContext" />
+			<role name="component" element="com.design_pattern.behavioral.state.TVContext::state:com.design_pattern.behavioral.state.State" />
+			<role name="Operation()" element="com.design_pattern.behavioral.state.TVContext::doAction():void" />
+		</instance>
+		<instance>
+			<role name="Component" element="com.design_pattern.structural.proxy.CommandExecutor" />
+			<role name="Decorator" element="com.design_pattern.structural.proxy.CommandExecutorProxy" />
+			<role name="component" element="com.design_pattern.structural.proxy.CommandExecutorProxy::cExecutor:com.design_pattern.structural.proxy.CommandExecutor" />
+			<role name="Operation()" element="com.design_pattern.structural.proxy.CommandExecutorProxy::runCommand(java.lang.String):void" />
+		</instance>
+	</pattern>
+	<pattern name="Observer">
+		<instance>
+			<role name="Observer" element="com.design_pattern.structural.composition.Shape" />
+			<role name="Subject" element="com.design_pattern.structural.composition.Drawing" />
+			<role name="Notify()" element="com.design_pattern.structural.composition.Drawing::draw(java.lang.String):void" />
+		</instance>
+		<instance>
+			<role name="Observer" element="com.design_pattern.behavioral.observer.Observer" />
+			<role name="Subject" element="com.design_pattern.behavioral.observer.MyTopic" />
+			<role name="Notify()" element="com.design_pattern.behavioral.observer.MyTopic::notifyObservers():void" />
+		</instance>
+	</pattern>
+	<pattern name="State">
+		<instance>
+			<role name="Context" element="com.design_pattern.behavioral.chainofresponsibility.ATMDispenseChain" />
+			<role name="State" element="com.design_pattern.behavioral.chainofresponsibility.DispenseChain" />
+			<role name="state" element="com.design_pattern.behavioral.chainofresponsibility.ATMDispenseChain::c1:com.design_pattern.behavioral.chainofresponsibility.DispenseChain" />
+			<role name="Request()" element="com.design_pattern.behavioral.chainofresponsibility.ATMDispenseChain::main(java.lang.String[]):void" />
+		</instance>
+		<instance>
+			<role name="State" element="com.design_pattern.behavioral.command.Command" />
+			<role name="Context" element="com.design_pattern.behavioral.command.FileInvoker" />
+			<role name="state" element="com.design_pattern.behavioral.command.FileInvoker::command:com.design_pattern.behavioral.command.Command" />
+			<role name="Request()" element="com.design_pattern.behavioral.command.FileInvoker::execute():void" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.design_pattern.behavioral.command.CloseCommand" />
+			<role name="State" element="com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="state" element="com.design_pattern.behavioral.command.CloseCommand::fileSystemReciever:com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="Request()" element="com.design_pattern.behavioral.command.CloseCommand::execute():void" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.design_pattern.behavioral.command.OpenCommand" />
+			<role name="State" element="com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="state" element="com.design_pattern.behavioral.command.OpenCommand::fileSystemReciever:com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="Request()" element="com.design_pattern.behavioral.command.OpenCommand::execute():void" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.design_pattern.behavioral.command.WriteCommand" />
+			<role name="State" element="com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="state" element="com.design_pattern.behavioral.command.WriteCommand::fileSystemReciever:com.design_pattern.behavioral.command.FileSystemReciever" />
+			<role name="Request()" element="com.design_pattern.behavioral.command.WriteCommand::execute():void" />
+		</instance>
+		<instance>
+			<role name="Context" element="com.design_pattern.behavioral.observer.MyTopicSubscriber" />
+			<role name="State" element="com.design_pattern.behavioral.observer.Subject" />
+			<role name="state" element="com.design_pattern.behavioral.observer.MyTopicSubscriber::topic:com.design_pattern.behavioral.observer.Subject" />
+			<role name="Request()" element="com.design_pattern.behavioral.observer.MyTopicSubscriber::update():void" />
+		</instance>
+	</pattern>
+	<pattern name="Strategy" />
+	<pattern name="Bridge" />
+	<pattern name="Template Method">
+		<instance>
+			<role name="AbstractClass" element="com.design_pattern.creational.factory.Computer" />
+			<role name="TemplateMethod()" element="com.design_pattern.creational.factory.Computer::getString():java.lang.String" />
+		</instance>
+	</pattern>
+	<pattern name="Visitor">
+		<instance>
+			<role name="ConcreteElement" element="com.design_pattern.behavioral.visitor.Book" />
+			<role name="Visitor" element="com.design_pattern.behavioral.visitor.ShoppingCardVisitor" />
+			<role name="Accept()" element="com.design_pattern.behavioral.visitor.Book::accept(com.design_pattern.behavioral.visitor.ShoppingCardVisitor):int" />
+		</instance>
+		<instance>
+			<role name="ConcreteElement" element="com.design_pattern.behavioral.visitor.Fruit" />
+			<role name="Visitor" element="com.design_pattern.behavioral.visitor.ShoppingCardVisitor" />
+			<role name="Accept()" element="com.design_pattern.behavioral.visitor.Fruit::accept(com.design_pattern.behavioral.visitor.ShoppingCardVisitor):int" />
+		</instance>
+	</pattern>
+	<pattern name="Proxy" />
+	<pattern name="Proxy2">
+		<instance>
+			<role name="Proxy" element="com.design_pattern.structural.proxy.CommandExecutorProxy" />
+			<role name="RealSubject" element="com.design_pattern.structural.proxy.CommandExecutorImp" />
+			<role name="Subject" element="com.design_pattern.structural.proxy.CommandExecutor" />
+			<role name="subject" element="com.design_pattern.structural.proxy.CommandExecutorProxy::cExecutor:com.design_pattern.structural.proxy.CommandExecutor" />
+			<role name="Request()" element="com.design_pattern.structural.proxy.CommandExecutorProxy::runCommand(java.lang.String):void" />
+		</instance>
+	</pattern>
+	<pattern name="Chain of Responsibility" />
+</system>
+
